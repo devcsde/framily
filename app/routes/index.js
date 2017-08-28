@@ -76,8 +76,8 @@ router.get('/auth/twitter/callback',
 
 //////////////////////////////////////////
 // CATCH ALL ROUTES WHICH ARE NOT DEFINED
-router.all('*', h.isAuthenticated, async (req, res, next) => {
-    await res.render('404', {
+router.all('*', h.isAuthenticated, (req, res, next) => {
+    res.render('404', {
         title: "Fr'amily | Not Found"
     })
 });

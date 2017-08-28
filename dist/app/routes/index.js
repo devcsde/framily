@@ -41,30 +41,10 @@ router.get('/chat/:id', h.isAuthenticated, function (req, res, next) {
     }
 });
 
-router.get('/logout', function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-            while (1) {
-                switch (_context.prev = _context.next) {
-                    case 0:
-                        _context.next = 2;
-                        return req.logout();
-
-                    case 2:
-                        res.redirect('/');
-
-                    case 3:
-                    case 'end':
-                        return _context.stop();
-                }
-            }
-        }, _callee, undefined);
-    }));
-
-    return function (_x, _x2, _x3) {
-        return _ref.apply(this, arguments);
-    };
-}());
+router.get('/logout', function (req, res, next) {
+    req.logout();
+    res.redirect('/');
+});
 
 router.get('/auth/facebook', passport.authenticate('facebook'));
 
@@ -92,26 +72,26 @@ router.get('/auth/twitter/callback', passport.authenticate('twitter', { failureR
 //////////////////////////////////////////
 // CATCH ALL ROUTES WHICH ARE NOT DEFINED
 router.all('*', h.isAuthenticated, function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res, next) {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res, next) {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
-                switch (_context2.prev = _context2.next) {
+                switch (_context.prev = _context.next) {
                     case 0:
-                        _context2.next = 2;
+                        _context.next = 2;
                         return res.render('404', {
                             title: "Fr'amily | Not Found"
                         });
 
                     case 2:
                     case 'end':
-                        return _context2.stop();
+                        return _context.stop();
                 }
             }
-        }, _callee2, undefined);
+        }, _callee, undefined);
     }));
 
-    return function (_x4, _x5, _x6) {
-        return _ref2.apply(this, arguments);
+    return function (_x, _x2, _x3) {
+        return _ref.apply(this, arguments);
     };
 }());
 

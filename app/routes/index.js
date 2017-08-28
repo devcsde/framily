@@ -37,8 +37,8 @@ router.get('/chat/:id', h.isAuthenticated, (req, res, next) => {
     }
 });
 
-router.get('/logout', async (req, res, next) => {
-    await req.logout();
+router.get('/logout', (req, res, next) => {
+    req.logout();
     res.redirect('/');
 });
 
